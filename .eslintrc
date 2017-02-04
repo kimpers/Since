@@ -1,0 +1,7 @@
+{
+  "extends": "./node_modules/codestyle/.react-eslintrc",
+  "rules": {
+    "no-use-before-define": 0,
+    "react-prop-types": 0
+  }
+}
