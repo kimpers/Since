@@ -10,9 +10,12 @@ import {
   StyleSheet,
   View
 } from 'react-native';
+import { StackNavigator } from 'react-navigation';
 
 import Toolbar from './components/Toolbar';
 import Item from './components/Item';
+import AddButton from './components/AddButton';
+
 
 const MOCK_ITEMS = [
   {
@@ -51,12 +54,19 @@ const onClickSettings = () => {
 
 
 };
-
+// <Toolbar onClickAdd={onClickAdd} onClickSettings={onClickSettings} />
+// left: <Icon name="ios-settings-outline" size={30} color="#000" onClick={onClickSettings} />
 export default class Since extends Component {
+  static navigationOptions = {
+    title: 'Welcome',
+    header: {
+      right: <AddButton onClickAdd={onClickAdd} />
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Toolbar onClickAdd={onClickAdd} onClickSettings={onClickSettings} />
         <View style={styles.list}>
           {MOCK_ITEMS.map((item, i) => <Item type={item.type} lastTimestamp={item.lastTimestamp} message={item.message} key={`item-${i}`} />)}
         </View>
@@ -74,4 +84,6 @@ const styles = StyleSheet.create({
   }
 });
 
-AppRegistry.registerComponent('Since', () => Since);
+AppRegistry.registerComponent('Since', () => StackNavigator({
+  Home: { screen: Since }
+}));

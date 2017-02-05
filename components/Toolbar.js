@@ -10,19 +10,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 const Toolbar = ({ onClickAdd, onClickSettings } : {onClickAdd: () => void, onClickSettings: () => void }) => (
   <View style={styles.toolbar}>
-    <Icon
-      name="ios-add-circle-outline"
-      size={30}
-      color="#fff"
-      onClick={onClickAdd}
-    />
     <Text style={styles.toolbarTitle}>Since App</Text>
-    <Icon
-      name="ios-settings-outline"
-      size={30}
-      color="#fff"
-      onClick={onClickSettings}
-    />
   </View>
 );
 
