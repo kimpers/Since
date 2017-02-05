@@ -8,63 +8,41 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import moment from 'moment';
 
-// TODO: replace with moment plugin for printing durations
-const createDurationText = (duration) => {
-  const years = duration.years();
-  const months = duration.months();
-  const days = duration.days();
-  const hours = duration.hours();
-  const minutes = duration.minutes();
-  const seconds = duration.seconds();
-
-  let durationString = '';
-  if (years) {
-    durationString += `${years} years `;
-  }
-
-  if (months) {
-    durationString += `${months} months `;
-  }
-
-  if (days) {
-    durationString += `${days} days `;
-  }
-
-  if (hours) {
-    durationString += `${hours} hours `;
-  }
-
-  if (minutes) {
-    durationString += `${minutes} minutes `;
-  }
-
-  if (!durationString && seconds) {
-    durationString += `${seconds} seconds `;
-  }
-
-  return durationString.trim();
-};
-
-const Item = ({ type, message, lastTimestamp } : { type: string, message: string, lastTimestamp: number }): Object => {
-  const duration = moment.duration(Date.now()).subtract(lastTimestamp);
+const Item = ({ type, message, lastTimestamp } : { type: string, message: string, lastTimestamp: number }) => {
+  const duration = moment.duration(lastTimestamp).subtract(Date.now());
 
   return (
     <View style={styles.container}>
-      <Icon
-        name={type}
-        size={20}
-        color="#000"
-      />
-      <Text>{message}</Text>
-      <Text>{createDurationText(duration)}</Text>
+      <View style={styles.iconWrapper}>
+        <Icon
+          name={type}
+          size={50}
+          color="#000"
+        />
+      </View>
+      <View style={styles.text}>
+        <Text>{message}</Text>
+        <Text>{duration.humanize(true)}</Text>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: 10,
+    marginRight: 10
+  },
+  text: {
+    marginLeft: 10
+  },
+  iconWrapper: {
+    width: 75,
+    alignItems: 'center'
   }
-
 });
 
 export default Item;

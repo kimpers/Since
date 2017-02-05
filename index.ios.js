@@ -57,7 +57,7 @@ export default class Since extends Component {
     return (
       <View style={styles.container}>
         <Toolbar onClickAdd={onClickAdd} onClickSettings={onClickSettings} />
-        <View>
+        <View style={styles.list}>
           {MOCK_ITEMS.map((item, i) => <Item type={item.type} lastTimestamp={item.lastTimestamp} message={item.message} key={`item-${i}`} />)}
         </View>
       </View>
@@ -67,23 +67,10 @@ export default class Since extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    backgroundColor: '#F5FCFF'
+    flex: 1
   },
-  addButton: {
-    alignSelf: 'flex-start'
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5
+  list: {
+    flex: 1
   }
 });
 
